@@ -1,4 +1,4 @@
 # F1
-A machine learning model that will predict who would win any given race weekend in this upcoming F1 season. 
+A project to answer two questions for this 2021 F1 Season. Who has the highest chance of winning any given F1 race and how likely a given racer would land in the points or score podium. 
 
-* Link to the API to access Data: http://ergast.com/mrd/
+* Link to the API we've used for data: http://ergast.com/mrd/
