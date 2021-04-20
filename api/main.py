@@ -1,9 +1,9 @@
 # main imports
 from fastapi import FastAPI
-rom sklearn.ensemble import RandomForestClassifier
 
 import pandas as pd 
 import joblib
+import predict
 
 
 '''
@@ -22,7 +22,4 @@ import joblib
 # Declaring the Application
 f1 = FastAPI()
 
-# The first call to the model. 
-@f1.get("/items/{item_id}")
-def read_item(item_id: int):
-    return {"item_id": item_id}
+f1.include_router(predict.router)
