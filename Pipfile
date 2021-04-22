@@ -11,6 +11,7 @@ uvicorn = "*"
 pandas = "*"
 joblib = "*"
 category-encoders = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"

@@ -3,7 +3,7 @@ from fastapi import FastAPI
 
 import pandas as pd 
 import joblib
-import predict
+import predictPlace, pointPredict
 
 
 '''
@@ -22,4 +22,5 @@ import predict
 # Declaring the Application
 f1 = FastAPI()
 
-f1.include_router(predict.router)
+f1.include_router(predictPlace.router)
+f1.include_router(pointPredict.router)
