@@ -3,6 +3,7 @@ import logging
 import pandas as pd 
 import category_encoders as ce
 
+from externalFunctions import quick_decode
 from fastapi import APIRouter
 from pydantic import BaseModel, Field
 
@@ -40,8 +41,8 @@ class Item(BaseModel):
     points: int = Field(...,example=10)
     wins: int = Field(...,example=1)
 
-@router.post('/predict')
-def predict(user_input: Item):
+@router.post('/predictPoints')
+def predictPoints(user_input: Item):
 
     '''
         The function will return the predicted place of the 
@@ -69,14 +70,15 @@ def predict(user_input: Item):
     predictPlace_encode = encoder.fit_transform(predictPlace_df)
 
     # Loading in the pickled model 
-    model = joblib.load("../Notebooks/models/modelPosition.sav")
+    model = joblib.load("../Notebooks/models/modelPoints.sav")
 
     # Now applying the model to the dataframe to see the result. 
     placePred = model.predict(predictPlace_encode)
-
-    return "{driver_f} {driver_l} is predicted to place in {place} place in {track}".format(driver_f=user_input.firstName, 
-                                                                                            driver_l=user_input.lastName, 
-                                                                                            place=int(placePred), 
-                                                                                            track=user_input.track)
-
     
+    # Decodes prediction to one of the 3 outcomes. 
+    final = quick_decode(placePred)
+    
+    # TODO: Format the final outcome. 
+    return "{fName} {lName} is likely to finish in {pred}".format(fName=user_input.firstName,
+                                                                    lName=user_input.lastName,
+                                                                    pred=final)
