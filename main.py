@@ -1,5 +1,6 @@
 # main imports
 from fastapi import FastAPI
+import gunicorn
 
 import pandas as pd 
 import joblib
