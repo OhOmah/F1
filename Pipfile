@@ -16,6 +16,7 @@ typing-extensions = "*"
 pydantic = "*"
 websockets = "*"
 uvloop = "*"
+httptools = "*"
 
 [requires]
 python_version = "3.8"
