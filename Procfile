@@ -1,1 +1,1 @@
-uvicorn api.main:f1 --reload 
+web: gunicorn api.main:f1 -w 4 -k uvicorn.workers.UvicornWorker
