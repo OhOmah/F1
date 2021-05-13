@@ -69,7 +69,7 @@ def predictPoints(user_input: Item):
     predictPlace_encode = encoder.fit_transform(predictPlace_df)
 
     # Loading in the pickled model 
-    model = joblib.load("../Notebooks/models/modelPoints.sav")
+    model = joblib.load("api/models/modelPoints.sav")
 
     # Now applying the model to the dataframe to see the result. 
     placePred = model.predict(predictPlace_encode)

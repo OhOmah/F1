@@ -55,7 +55,7 @@ def predictPlace(user_input: Item):
     encoder = ce.OrdinalEncoder()
 
     # Converting the user input into a dict
-    ui_dict = user_input.dicrt()
+    ui_dict = user_input.dict()
 
     # Taking the user input (which will be turned into a dict) and transforming
     # the data into a dataframe, which the encoder and model will predict on. 
@@ -68,7 +68,7 @@ def predictPlace(user_input: Item):
     predictPlace_encode = encoder.fit_transform(predictPlace_df)
 
     # Loading in the pickled model 
-    model = joblib.load("../Notebooks/models/modelPosition.sav")
+    model = joblib.load("api/models/modelPosition.sav")
 
     # Now applying the model to the dataframe to see the result. 
     placePred = model.predict(predictPlace_encode)
