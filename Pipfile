@@ -15,6 +15,7 @@ gunicorn = "*"
 typing-extensions = "*"
 pydantic = "*"
 websockets = "*"
+uvloop = "*"
 
 [requires]
 python_version = "3.8"
