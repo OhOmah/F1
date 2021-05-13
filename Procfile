@@ -1,1 +1,1 @@
-web: uvicorn api.main:f1 
+web: uvicorn main:f1 

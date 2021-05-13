@@ -3,7 +3,7 @@ from fastapi import FastAPI
 
 import pandas as pd 
 import joblib
-from F1.api import predictPlace, pointPredict
+from api import predictPlace, pointPredict
 
 
 '''

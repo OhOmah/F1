@@ -3,7 +3,7 @@ import logging
 import pandas as pd 
 import category_encoders as ce
 
-from externalFunctions import quick_decode
+from api.externalFunctions import quick_decode
 from fastapi import APIRouter
 from pydantic import BaseModel, Field
 
