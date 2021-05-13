@@ -1,1 +1,1 @@
-web: gunicorn api.main:f1 --host=0.0.0.0 --port=${PORT:-5000}
+web: uvicorn api.main:f1 
