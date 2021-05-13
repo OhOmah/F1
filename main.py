@@ -1,9 +1,11 @@
 # main imports
 from fastapi import FastAPI
-import gunicorn
+from fastapi.middleware.cors import CORSMiddleware
 
 import pandas as pd 
 import joblib
+import uvicorn
+
 from api import predictPlace, pointPredict
 
 
@@ -21,7 +23,22 @@ from api import predictPlace, pointPredict
         * Once happy, use jinja2 to redesign API to liking. 
 '''
 # Declaring the Application
-f1 = FastAPI()
+f1 = FastAPI(
+    title='F1 Prediction Project',
+    docs_url='/',
+)
 
 f1.include_router(predictPlace.router)
 f1.include_router(pointPredict.router)
+
+f1.add_middleware(
+    CORSMiddleware,
+    allow_origin_regex='https?://.*',
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=['*'],
+    allow_headers=['*'],
+)
+
+if __name__ == '__main__':
+    uvicorn.run(f1)

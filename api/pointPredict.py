@@ -13,7 +13,6 @@ from pydantic import BaseModel, Field
 '''
 
 # Setting up the router 
-log = logging.getLogger(__name__)
 router = APIRouter()
 
 # Assigning the values that the model is going to use to predict with
