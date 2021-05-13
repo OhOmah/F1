@@ -56,7 +56,7 @@ def predictPlace(user_input: Item):
     encoder = ce.OrdinalEncoder()
 
     # Converting the user input into a dict
-    ui_dict = user_input.dict()
+    ui_dict = user_input.dicrt()
 
     # Taking the user input (which will be turned into a dict) and transforming
     # the data into a dataframe, which the encoder and model will predict on. 
