@@ -12,6 +12,7 @@ pandas = "*"
 joblib = "*"
 category-encoders = "*"
 gunicorn = "*"
+typing-extensions = "*"
 
 [requires]
 python_version = "3.8"
