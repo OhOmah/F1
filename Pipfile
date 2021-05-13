@@ -13,6 +13,7 @@ joblib = "*"
 category-encoders = "*"
 gunicorn = "*"
 typing-extensions = "*"
+pydantic = "*"
 
 [requires]
 python_version = "3.8"
