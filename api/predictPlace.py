@@ -24,8 +24,7 @@ class Item(BaseModel):
     '''
     year: int = Field(...,example=2021)
     session: int = Field(...,example=1)
-    firstName: str = Field(...,example="Lewis")
-    lastName: str = Field(...,example="Hamilton")
+    driver: str = Field(...,example="Lewis Hamilton")
     constructor: str = Field(...,example="Mercedes")
     fastestTime: str = Field(...,example="1:07.342")
     fastestLap: str = Field(...,example="66")
@@ -59,8 +58,8 @@ def predictPlace(user_input: Item):
 
     # Taking the user input (which will be turned into a dict) and transforming
     # the data into a dataframe, which the encoder and model will predict on. 
-    column_list = ["Year", "Round", "First_Name", "Last_Name", "Track", "Points",
-                 "Wins", "Q1_Time", "Q2_Time", "Q3_Time"]
+    column_list = ["year", "session", "driver", "track", "points",
+                 "wins", "q1Time", "q2Time", "q3Time"]
     predictPlace_df = pd.DataFrame(columns=column_list)
     predictPlace_df = predictPlace_df.append(ui_dict, ignore_index=True)
 
@@ -74,8 +73,7 @@ def predictPlace(user_input: Item):
     placePred = model.predict(predictPlace_encode)
     
     # TODO: I should make if statements to make sure it's either st, th, nd, or rd. 
-    return "{driver_f} {driver_l} is predicted to place in {place} place in {track}".format(driver_f=user_input.firstName, 
-                                                                                            driver_l=user_input.lastName, 
+    return "{driver_f} is predicted to place in {place} place in {track}".format(driver_f=user_input.driver, 
                                                                                             place=int(placePred), 
                                                                                             track=user_input.track)
 

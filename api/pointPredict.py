@@ -25,8 +25,7 @@ class Item(BaseModel):
     '''
     year: int = Field(...,example=2021)
     session: int = Field(...,example=1)
-    firstName: str = Field(...,example="Lewis")
-    lastName: str = Field(...,example="Hamilton")
+    driver: str = Field(...,example="Lewis Hamilton")
     constructor: str = Field(...,example="Mercedes")
     fastestTime: str = Field(...,example="1:07.342")
     fastestLap: str = Field(...,example="66")
@@ -60,8 +59,8 @@ def predictPoints(user_input: Item):
 
     # Taking the user input (which will be turned into a dict) and transforming
     # the data into a dataframe, which the encoder and model will predict on. 
-    column_list = ["Year", "Round", "First_Name", "Last_Name", "Track", "Points",
-                 "Wins", "Q1_Time", "Q2_Time", "Q3_Time"]
+    column_list = ["year", "session", "driver", "track", "points",
+                 "wins", "q1Time", "q2Time", "q3Time"]
     predictPlace_df = pd.DataFrame(columns=column_list)
     predictPlace_df = predictPlace_df.append(ui_dict, ignore_index=True)
 
@@ -78,6 +77,5 @@ def predictPoints(user_input: Item):
     final = quick_decode(placePred)
     
     # TODO: Format the final outcome. 
-    return "{fName} {lName} is likely to finish in {pred}".format(fName=user_input.firstName,
-                                                                    lName=user_input.lastName,
-                                                                    pred=final)
+    return "{fName} is likely to finish in {pred}".format(fName=user_input.driver,
+                                                                       pred=final)

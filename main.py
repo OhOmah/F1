@@ -1,6 +1,10 @@
 # main imports
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+
+from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.templating import Jinja2Templates
+
 
 import pandas as pd 
 import joblib
@@ -15,18 +19,16 @@ from api import predictPlace, pointPredict
     Note: Will need to import current functions made in notebook into their own .py files 
 
     TODO: 
-        * Pickle both machine learning models  ** DONE 
-        * Import both models into the API 
-        * Import the update function 
-        * Improve both models
-        * Pickle/Import both models 
         * Once happy, use jinja2 to redesign API to liking. 
+        * Update the training the data. 
+        * Update the Model to deliver more accurate results 
 '''
 # Declaring the Application
 f1 = FastAPI(
     title='F1 Prediction Project',
     docs_url='/',
 )
+templates = Jinja2Templates(directory="templates/")
 
 f1.include_router(predictPlace.router)
 f1.include_router(pointPredict.router)
@@ -39,6 +41,7 @@ f1.add_middleware(
     allow_methods=['*'],
     allow_headers=['*'],
 )
+
 
 if __name__ == '__main__':
     uvicorn.run(f1)
